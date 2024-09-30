@@ -35,6 +35,10 @@
         <p class="font-semibold">Last Server:</p>
         <p id="last-server" class="text-gray-400"></p>
       </div>
+      <div class="mt-4">
+        <p class="font-semibold">Alt Account:</p>
+        <p id="alt-account" class="text-lg font-bold"></p>
+      </div>
     </div>
 
     <div id="no-result" class="hidden text-red-500 mt-4 text-center">
@@ -64,6 +68,7 @@
       const playerName = document.getElementById('player-name');
       const identifierList = document.getElementById('identifier-list');
       const lastServer = document.getElementById('last-server');
+      const altAccount = document.getElementById('alt-account');
 
       if (player) {
         playerName.textContent = player.name;
@@ -74,6 +79,16 @@
           identifierList.appendChild(li);
         });
         lastServer.textContent = player.lastServer;
+
+        if (player.isAltAccount) {
+          altAccount.textContent = 'Yes';
+          altAccount.classList.add('text-red-500');
+          altAccount.classList.remove('text-green-500');
+        } else {
+          altAccount.textContent = 'No';
+          altAccount.classList.add('text-green-500');
+          altAccount.classList.remove('text-red-500');
+        }
 
         playerInfo.classList.remove('hidden');
         noResult.classList.add('hidden');
